@@ -1,0 +1,131 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model departments {
+  id_department Int        @id @default(autoincrement())
+  name          String     @db.VarChar(50)
+  state         String     @db.Char
+  user_reg      String     @default("system") @db.VarChar(25)
+  date_reg      DateTime   @default(dbgenerated("(now())::timestamp without time zone")) @db.Timestamp(6)
+  user_fin_reg  String?    @db.VarChar(25)
+  date_fin_reg  DateTime?  @db.Timestamp(6)
+  entities      entities[]
+}
+
+model entities {
+  id_entity      Int              @id @default(autoincrement())
+  id_department  Int?
+  id_rol         Int?
+  name           String           @db.VarChar(50)
+  last_name      String?          @db.VarChar(50)
+  tel_number     String?          @db.VarChar(50)
+  address        String?          @db.VarChar(200)
+  state          String           @db.Char
+  user_reg       String           @default("system") @db.VarChar(25)
+  date_reg       DateTime         @default(dbgenerated("(now())::timestamp without time zone")) @db.Timestamp(6)
+  user_fin_reg   String?          @db.VarChar(25)
+  date_fin_reg   DateTime?        @db.Timestamp(6)
+  departments    departments?     @relation(fields: [id_department], references: [id_department], onDelete: Cascade)
+  roles          roles?           @relation(fields: [id_rol], references: [id_rol], onDelete: Cascade)
+  entities_tasks entities_tasks[]
+}
+
+model entities_tasks {
+  id_entity_task Int       @id @default(autoincrement())
+  id_entity      Int
+  id_task        Int
+  user_reg       String    @default("system") @db.VarChar(25)
+  date_reg       DateTime  @default(dbgenerated("(now())::timestamp without time zone")) @db.Timestamp(6)
+  user_fin_reg   String?   @db.VarChar(25)
+  date_fin_reg   DateTime? @db.Timestamp(6)
+  entities       entities  @relation(fields: [id_entity], references: [id_entity], onDelete: Cascade)
+  tasks          tasks     @relation(fields: [id_task], references: [id_task], onDelete: Cascade)
+}
+
+model priorities {
+  id_priority  Int       @id @default(autoincrement())
+  name         String    @db.VarChar(50)
+  description  String?   @db.VarChar(200)
+  user_reg     String    @default("system") @db.VarChar(25)
+  date_reg     DateTime  @default(dbgenerated("(now())::timestamp without time zone")) @db.Timestamp(6)
+  user_fin_reg String?   @db.VarChar(25)
+  date_fin_reg DateTime? @db.Timestamp(6)
+  tasks        tasks[]
+}
+
+model roles {
+  id_rol       Int        @id @default(autoincrement())
+  name         String     @db.VarChar(50)
+  description  String?    @db.VarChar(200)
+  state        String?    @db.Char
+  user_reg     String     @default("system") @db.VarChar(25)
+  date_reg     DateTime   @default(dbgenerated("(now())::timestamp without time zone")) @db.Timestamp(6)
+  user_fin_reg String?    @db.VarChar(25)
+  date_fin_reg DateTime?  @db.Timestamp(6)
+  entities     entities[]
+}
+
+model sprints {
+  id_sprint    Int       @id @default(autoincrement())
+  name         String    @db.VarChar(50)
+  start_date   DateTime? @db.Timestamp(6)
+  end_date     DateTime? @db.Timestamp(6)
+  description  String?   @db.VarChar(200)
+  state        String?   @db.Char
+  user_reg     String    @default("system") @db.VarChar(25)
+  date_reg     DateTime  @default(dbgenerated("(now())::timestamp without time zone")) @db.Timestamp(6)
+  user_fin_reg String?   @db.VarChar(25)
+  date_fin_reg DateTime? @db.Timestamp(6)
+  steps        steps[]
+}
+
+model steps {
+  id_step      Int       @id @default(autoincrement())
+  id_sprint    Int?
+  name         String    @db.VarChar(50)
+  description  String?   @db.VarChar(200)
+  user_reg     String    @default("system") @db.VarChar(25)
+  date_reg     DateTime  @default(dbgenerated("(now())::timestamp without time zone")) @db.Timestamp(6)
+  user_fin_reg String?   @db.VarChar(25)
+  date_fin_reg DateTime? @db.Timestamp(6)
+  sprints      sprints?  @relation(fields: [id_sprint], references: [id_sprint], onDelete: Cascade)
+  tasks        tasks[]
+}
+
+model tags {
+  id_tag       Int       @id @default(autoincrement())
+  id_task      Int
+  name         String    @db.VarChar(50)
+  description  String?   @db.VarChar(200)
+  color        String    @db.VarChar(100)
+  user_reg     String    @default("system") @db.VarChar(25)
+  date_reg     DateTime  @default(dbgenerated("(now())::timestamp without time zone")) @db.Timestamp(6)
+  user_fin_reg String?   @db.VarChar(25)
+  date_fin_reg DateTime? @db.Timestamp(6)
+  tasks        tasks     @relation(fields: [id_task], references: [id_task], onDelete: Cascade)
+}
+
+model tasks {
+  id_task        Int              @id @default(autoincrement())
+  id_priority    Int
+  id_step        Int
+  name           String           @db.VarChar(50)
+  description    String?          @db.VarChar(200)
+  percentage     Int?
+  date           DateTime         @db.Timestamp(6)
+  duration       String?          @db.VarChar(50)
+  user_reg       String           @default("system") @db.VarChar(25)
+  date_reg       DateTime         @default(dbgenerated("(now())::timestamp without time zone")) @db.Timestamp(6)
+  user_fin_reg   String?          @db.VarChar(25)
+  date_fin_reg   DateTime?        @db.Timestamp(6)
+  entities_tasks entities_tasks[]
+  tags           tags[]
+  priorities     priorities       @relation(fields: [id_priority], references: [id_priority], onDelete: Cascade)
+  steps          steps            @relation(fields: [id_step], references: [id_step], onDelete: Cascade)
+}
