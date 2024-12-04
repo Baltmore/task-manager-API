@@ -1,0 +1,75 @@
+2024-12-04 13:50:11:5011 error: 
+Invalid `prisma.priorities.findMany()` invocation:
+
+{
+  where: {
+    id_priorit: 1,
+    ~~~~~~~~~~
+?   AND?: prioritiesWhereInput | prioritiesWhereInput[],
+?   OR?: prioritiesWhereInput[],
+?   NOT?: prioritiesWhereInput | prioritiesWhereInput[],
+?   id_priority?: IntFilter | Int,
+?   name?: StringFilter | String,
+?   description?: StringNullableFilter | String | Null,
+?   user_reg?: StringFilter | String,
+?   date_reg?: DateTimeFilter | DateTime,
+?   user_fin_reg?: StringNullableFilter | String | Null,
+?   date_fin_reg?: DateTimeNullableFilter | DateTime | Null,
+?   tasks?: TasksListRelationFilter
+  },
+  orderBy: {
+    id_priorit: "asc"
+  }
+}
+
+Unknown argument `id_priorit`. Did you mean `id_priority`? Available options are marked with ?.
+2024-12-04 13:51:40:5140 error: 
+Invalid `prisma.priorities.findMany()` invocation:
+
+{
+  where: {
+    id_priorit: 1,
+    ~~~~~~~~~~
+?   AND?: prioritiesWhereInput | prioritiesWhereInput[],
+?   OR?: prioritiesWhereInput[],
+?   NOT?: prioritiesWhereInput | prioritiesWhereInput[],
+?   id_priority?: IntFilter | Int,
+?   name?: StringFilter | String,
+?   description?: StringNullableFilter | String | Null,
+?   user_reg?: StringFilter | String,
+?   date_reg?: DateTimeFilter | DateTime,
+?   user_fin_reg?: StringNullableFilter | String | Null,
+?   date_fin_reg?: DateTimeNullableFilter | DateTime | Null,
+?   tasks?: TasksListRelationFilter
+  },
+  orderBy: {
+    id_priorit: "asc"
+  }
+}
+
+Unknown argument `id_priorit`. Did you mean `id_priority`? Available options are marked with ?.
+2024-12-04 13:53:09:539 error: 
+Invalid `prisma.priorities.findMany()` invocation:
+
+{
+  where: {
+    id_priorit: 1,
+    ~~~~~~~~~~
+?   AND?: prioritiesWhereInput | prioritiesWhereInput[],
+?   OR?: prioritiesWhereInput[],
+?   NOT?: prioritiesWhereInput | prioritiesWhereInput[],
+?   id_priority?: IntFilter | Int,
+?   name?: StringFilter | String,
+?   description?: StringNullableFilter | String | Null,
+?   user_reg?: StringFilter | String,
+?   date_reg?: DateTimeFilter | DateTime,
+?   user_fin_reg?: StringNullableFilter | String | Null,
+?   date_fin_reg?: DateTimeNullableFilter | DateTime | Null,
+?   tasks?: TasksListRelationFilter
+  },
+  orderBy: {
+    id_priorit: "asc"
+  }
+}
+
+Unknown argument `id_priorit`. Did you mean `id_priority`? Available options are marked with ?.

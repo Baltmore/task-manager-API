@@ -16,3 +16,6 @@ router.get('/id', getPriorityById);
 router.post('/create', createPriority);
 router.put('/update', updatePriority);
 router.delete('/delete', deletePriority);
+
+// Export the router to be used in the server
+export default router;

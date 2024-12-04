@@ -16,3 +16,6 @@ router.get('/id', getTaskById);
 router.post('/create', createTask);
 router.put('/update', updateTask);
 router.delete('/delete', deleteTask);
+
+// Export the router to be used in the server
+export default router;

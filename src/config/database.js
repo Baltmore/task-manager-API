@@ -1,6 +1,6 @@
-import logger from '../common/utils/logger';
-import envs from '../config/envs';
-import { PrismaClient } from '@prisma/client/extension';
+import logger from '../common/utils/logger.js';
+import envs from '../config/envs.js';
+import { PrismaClient } from '@prisma/client';
 
 // Load the environment variable of the application
 const { NODE_ENV } = envs;

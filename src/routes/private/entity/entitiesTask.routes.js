@@ -16,3 +16,6 @@ router.get('/id', getEntityTaskById);
 router.post('/create', createEntityTask);
 router.put('/update', updateEntityTask);
 router.delete('/delete', deleteEntityTask);
+
+// Export the router to be used in the server
+export default router;

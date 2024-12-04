@@ -16,3 +16,6 @@ router.get('/id', getRolesById);
 router.post('/create', createRoles);
 router.put('/update', updateRoles);
 router.delete('/delete', deleteRoles);
+
+// Export the router to be used in the server
+export default router;

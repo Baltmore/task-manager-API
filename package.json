@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "NODE_ENV=dev node src/app.js",
-    "dev:windows": "set NODE_ENV=dev && node src/app.js",
+    "dev": "NODE_ENV=dev nodemon src/app.js",
+    "dev:windows": "set NODE_ENV=dev && nodemon src/app.js",
     "start": "NODE_ENV=prod node src/app.js",
     "start:windows": "set NODE_ENV=prod && node src/app.js",
     "format": "prettier --write .",
@@ -24,6 +24,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.1",
+    "express-async-handler": "^1.2.0",
     "helmet": "^8.0.0",
     "morgan": "^1.10.0",
     "prisma": "^5.22.0",

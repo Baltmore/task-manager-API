@@ -5,16 +5,14 @@ import https from 'node:https';
 import { fileURLToPath } from 'node:url';
 import cors from 'cors';
 import helmet from 'helmet';
-import morgan from 'morgan';
+import { errorHandler } from './config/middlewares/error.js';
+import morganMiddleware from './config/middlewares/morgan.js';
 import logger from './common/utils/logger.js';
 import envs from './config/envs.js';
 import { privateRouter, publicRouter } from './routes/all.routes.js';
 
 // Create the express app
 const app = express();
-
-// Load the environment variables
-const { API_PORT, API_PORT_SSL, SSL, NODE_ENV } = envs;
 
 // Middlewares
 
@@ -28,15 +26,20 @@ app.use(helmet());
 app.use(express.json());
 // To parse the body of the request
 app.use(express.urlencoded({ extended: false }));
-if (NODE_ENV === 'dev') {
-  app.use(morgan('dev'));
-}
+// To log the HTTP requests
+app.use(morganMiddleware);
 
 // Specify the routes
 app.use('/api/v1/public', publicRouter);
 
 //TODO : Add auth middleware
 app.use('/api/v1/private' /* , auth */, privateRouter);
+
+// to handle the errors
+app.use(errorHandler);
+
+// Load the environment variables
+const { API_PORT, API_PORT_SSL, SSL } = envs;
 
 // Starting the HTTP server
 app.listen(API_PORT, () => {

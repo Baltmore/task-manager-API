@@ -16,3 +16,6 @@ router.get('/id', getStepById);
 router.post('/create', createStep);
 router.put('/update', updateStep);
 router.delete('/delete', deleteStep);
+
+// Export the router to be used in the server
+export default router;

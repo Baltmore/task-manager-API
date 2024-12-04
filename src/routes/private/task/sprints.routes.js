@@ -16,3 +16,6 @@ router.get('/id', getSprintById);
 router.post('/create', createSprint);
 router.put('/update', updateSprint);
 router.delete('/delete', deleteSprint);
+
+// Export the router to be used in the server
+export default router;

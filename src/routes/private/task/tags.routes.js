@@ -16,3 +16,6 @@ router.get('/id', getTagById);
 router.post('/create', createTag);
 router.put('/update', updateTag);
 router.delete('/delete', deleteTag);
+
+// Export the router to be used in the server
+export default router;

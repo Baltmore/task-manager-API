@@ -16,3 +16,6 @@ router.get('/id', getDepartmentById);
 router.post('/create', createDepartment);
 router.put('/update', updateDepartment);
 router.delete('/delete', deleteDepartment);
+
+// Export the router to be used in the server
+export default router;

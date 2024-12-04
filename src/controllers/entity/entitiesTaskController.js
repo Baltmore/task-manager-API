@@ -21,7 +21,7 @@ export const getEntityTaskById = asyncHandler(async (req, res) => {
   const filter = _getFilterFromQueryParams(query);
 
   // find the department by the id in the database
-  const consult = await base.findOne(database.entities_tasks, filter);
+  const consult = await base.findById(database.entities_tasks, filter);
 
   // return the department by the id
   return res.status(200).json(consult);
@@ -54,7 +54,10 @@ export const updateEntityTask = asyncHandler(async (req, res) => {
   const updated = await base.update(database.entities_tasks, filter, body);
 
   // return the department updated
-  return res.status(200).json(`Resource updated: ${updated}`);
+  return res.status(200).json({
+    message: 'Resource updated',
+    updated: updated,
+  });
 });
 
 //DELETE
@@ -66,8 +69,11 @@ export const deleteEntityTask = asyncHandler(async (req, res) => {
   const filter = _getFilterFromQueryParams(query);
 
   // delete the department by the id in the database
-  const deleted = await base.remove(database.entities_tasks, filter);
+  const deleted = await base.eliminate(database.entities_tasks, filter);
 
   // return the department deleted
-  return res.status(200).json(`Resource deleted: ${deleted}`);
+  return res.status(200).json({
+    message: 'Resource deleted',
+    updated: deleted,
+  });
 });
